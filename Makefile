@@ -13,8 +13,10 @@ CFLAGS += -Wall -Wextra -Werror
 
 all: build run
 
-test: xorshift_test.exe
+test: xorshift_test.exe bmp_test.exe geom_test.exe
+	./geom_test.exe
 	./xorshift_test.exe
+	./bmp_test.exe
 
 build: project.exe
 
@@ -25,7 +27,13 @@ clean:
 	-rm *.exe
 	-rm *.o
 
+geom_test.exe: geom_test.o geom.o test_utils.o
+	$(CC) $(CFLAGS) $^ -o $@
+
 xorshift_test.exe: xorshift_test.o xorshift.o test_utils.o
+	$(CC) $(CFLAGS) $^ -o $@
+
+bmp_test.exe: bmp_test.o bmp.o image.o geom.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 project.exe: main.o
