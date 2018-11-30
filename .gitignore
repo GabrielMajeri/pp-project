@@ -1,0 +1,8 @@
+# Compiled files
+*.o
+
+# Extension for built binaries
+*.exe
+
+# Bitmap images used for testing
+*.bmp
