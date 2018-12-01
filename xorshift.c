@@ -19,3 +19,7 @@ u32 xors32_next(xors32_state* state) {
 
     return r;
 }
+
+u32 xors32_next_range(xors32_state* state, u32 max) {
+    return xors32_next(state) % max;
+}
