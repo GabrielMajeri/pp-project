@@ -7,4 +7,7 @@
 /// altfel iese din program cu un error code
 void assert_eq(u32 expected, u32 actual);
 
+/// Verifica ca doua numere reale sunt aproximativ egale
+void assert_almost_eq(double expected, double actual);
+
 #endif
