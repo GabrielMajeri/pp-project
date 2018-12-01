@@ -99,21 +99,17 @@ static void bmp_write_header(FILE* f, u32 width, u32 height) {
     fwrite(&compression, sizeof(u32), 1, f);
 
     // image size
-    fwrite(&zero, sizeof(u32), 1, f);
+    u32 image_size = size - 54;
+    fwrite(&image_size, sizeof(u32), 1, f);
 
-    u32 hor_res = 2835;
-    fwrite(&hor_res, sizeof(u32), 1, f);
-    u32 vert_res = 2835;
-    fwrite(&vert_res, sizeof(u32), 1, f);
+    // hor / vert res
+    fwrite(&zero, sizeof(u32), 1, f);
+    fwrite(&zero, sizeof(u32), 1, f);
 
     // nr culori
     fwrite(&zero, sizeof(u32), 1, f);
     // nr culori importante
     fwrite(&zero, sizeof(u32), 1, f);
-
-    if (ftell(f) != 54) {
-        fprintf(stderr, "really bad\n");
-    }
 }
 
 void bmp_write(image imagine, const char* dest) {
