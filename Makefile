@@ -1,3 +1,4 @@
+# Use gcc if no other compiler is set
 CC ?= gcc
 
 # Use the C99 standard
@@ -6,35 +7,51 @@ CFLAGS += -std=c99
 # Enable additional warnings
 CFLAGS += -Wall -Wextra -Werror
 
+# This Make function is used to run a test binary
+define run-test
+$(1)
+
+endef
+
+
+SRCS := $(wildcard *.c)
+
+LIB_SRCS := $(filter-out main.c %_test.c,$(SRCS))
+TEST_SRCS := $(filter %_test.c,$(SRCS))
+
+HDRS := $(wildcard *.h)
+
+LIB_OBJS := $(patsubst %.c,build/%.o,$(LIB_SRCS))
+
+UNIT_TESTS := $(patsubst %_test.c,%,$(TEST_SRCS))
+UNIT_TESTS_BIN := $(patsubst %,build/%_test.exe,$(UNIT_TESTS))
+
 # Do not echo build commands
 .SILENT:
 
-.PHONY: all build clean
+.PHONY: all compile run test clean
 
-all: build run
+all: compile test run
 
-test: xorshift_test.exe bmp_test.exe geom_test.exe
-	./geom_test.exe
-	./xorshift_test.exe
-	./bmp_test.exe
+compile: $(LIB_OBJS)
 
-build: project.exe
+test: $(UNIT_TESTS_BIN)
+	$(foreach test,$(UNIT_TESTS_BIN),$(call run-test,./$(test)))
 
-run: project.exe
+run: build/project.exe
 	./$<
 
 clean:
-	-rm *.exe
-	-rm *.o
+	-rm -r build
 
-geom_test.exe: geom_test.o geom.o test_utils.o
+build:
+	mkdir build
+
+build/%.o: %.c $(HDRS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+build/%_test.exe: build/%_test.o $(LIB_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
-xorshift_test.exe: xorshift_test.o xorshift.o test_utils.o
-	$(CC) $(CFLAGS) $^ -o $@
-
-bmp_test.exe: bmp_test.o bmp.o image.o geom.o
-	$(CC) $(CFLAGS) $^ -o $@
-
-project.exe: main.o
+build/project.exe: build/main.o
 	$(CC) $(CFLAGS) $^ -o $@

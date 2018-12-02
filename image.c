@@ -3,12 +3,12 @@
 #include <stdlib.h>
 
 image image_alloc(u32 width, u32 height) {
-    pixel* pixeli = (pixel*)calloc(sizeof(pixel), width * height);
+    pixel* data = (pixel*)calloc(width * height, sizeof(pixel));
 
     image imagine = {
         .width = width,
         .height = height,
-        .data = pixeli,
+        .data = data,
     };
 
     return imagine;
