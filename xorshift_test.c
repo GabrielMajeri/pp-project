@@ -2,14 +2,12 @@
 #include "test_utils.h"
 #include "xorshift.h"
 
-void test_input(u32 seed, const u32* valid, int n) {
-    xors32_state state = xors32_init(seed);
+void test_input(u32 seed, const u32* valid, u32 len) {
+    u32 generated[len];
+    xors32_vector(seed, len, generated);
 
-    for (int i = 0; i < n; ++i) {
-        const u32 expected = valid[i];
-        const u32 result = xors32_next(&state);
-
-        assert_eq(expected, result);
+    for (u32 i = 0; i < len; ++i) {
+        assert_eq(valid[i], generated[i]);
     }
 }
 

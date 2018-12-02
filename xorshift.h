@@ -14,7 +14,7 @@ xors32_state xors32_init(u32 seed);
 /// Genereaza urmatorul numar random
 u32 xors32_next(xors32_state* state);
 
-/// Genereaza urmatorul numar random in intervalul [0, max)
-u32 xors32_next_range(xors32_state* state, u32 max);
+/// Genereaza un vector de numere random, plecand de la un seed
+void xors32_vector(u32 seed, u32 len, u32* dest);
 
 #endif
