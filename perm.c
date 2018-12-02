@@ -36,12 +36,22 @@ u32* perm_generate(const u32* random, u32 len) {
     return perm;
 }
 
-u32* perm_reverse(const u32* perm, u32 len) {
-    u32* rev = perm_alloc(len);
+u32* perm_inverse(const u32* perm, u32 len) {
+    u32* inv = perm_alloc(len);
 
     for (u32 k = 0; k < len; ++k) {
-        rev[perm[k]] = k;
+        inv[perm[k]] = k;
     }
 
-    return rev;
+    return inv;
+}
+
+u32* perm_compose(const u32* lhs, const u32* rhs, u32 len) {
+    u32* result = perm_alloc(len);
+
+    for (u32 k = 0; k < len; ++k) {
+        result[k] = lhs[rhs[k]];
+    }
+
+    return result;
 }

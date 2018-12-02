@@ -17,6 +17,9 @@ void perm_free(u32* perm);
 u32* perm_generate(const u32* random, u32 len);
 
 /// Genereaza permutarea inversa a unei permutari existente
-u32* perm_reverse(const u32* perm, u32 len);
+u32* perm_inverse(const u32* perm, u32 len);
+
+/// Compune doua permutari intr-o permutare noua
+u32* perm_compose(const u32* lhs, const u32* rhs, u32 len);
 
 #endif
