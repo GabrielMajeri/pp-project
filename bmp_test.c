@@ -8,6 +8,10 @@ int main() {
     bmp_write(imagine, "test_data/peppers_copy.bmp");
     bmp_write(subimagine, "test_data/peppers_subimg.bmp");
 
+    image window = image_window(imagine, (point){ 15, 790 }, 100, 100);
+    bmp_write(window, "test_data/peppers_window.bmp");
+
+    image_free(&window);
     image_free(&subimagine);
     image_free(&imagine);
 }
