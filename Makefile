@@ -51,7 +51,7 @@ build/%.o: %.c $(HDRS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 build/%_test.exe: build/%_test.o $(LIB_OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -lm
 
 build/project.exe: build/main.o
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -lm
