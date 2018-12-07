@@ -12,7 +12,7 @@ void test_reversible_encryption() {
 
     image decrypted = crypto_decrypt(key, encrypted);
 
-    bmp_write(decrypted, "peppers_restored.bmp");
+    bmp_write(decrypted, "test_data/peppers_restored.bmp");
 
     image_free(&decrypted);
     image_free(&encrypted);
