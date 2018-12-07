@@ -1,3 +1,10 @@
-peppers.bmp
-enc_peppers_ok.bmp
-secret_key.txt
+/*
+
+# For cryptography tests
+!secret_key.txt
+!peppers.bmp
+!enc_peppers_ok.bmp
+
+# For pattern matching tests
+!cifra*.bmp
+!test.bmp
