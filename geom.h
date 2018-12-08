@@ -26,4 +26,10 @@ void rectangle_dims(rectangle r, u32* width, u32* height);
 /// Calculeaza intersectia a doua dreptunghiuri.
 rectangle rectangle_intersect(rectangle a, rectangle b);
 
+/// Calculeaza aria unui dreptunghi
+u32 rectangle_area(rectangle r);
+
+/// Calculeaza suprapunerea a doua dreptunghiuri
+double rectangle_overlap(rectangle a, rectangle b);
+
 #endif

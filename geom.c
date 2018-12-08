@@ -25,3 +25,19 @@ rectangle rectangle_intersect(rectangle a, rectangle b) {
     return rectangle_new(MAX(a.lt.x, b.lt.x), MAX(a.lt.y, b.lt.y),
         MIN(a.rb.x, b.rb.x), MIN(a.rb.y, b.rb.y));
 }
+
+u32 rectangle_area(rectangle r) {
+    u32 width, height;
+    rectangle_dims(r, &width, &height);
+
+    return width * height;
+}
+
+double rectangle_overlap(rectangle a, rectangle b) {
+    rectangle isect = rectangle_intersect(a, b);
+
+    double isect_area = rectangle_area(isect);
+    double union_area = rectangle_area(a) + rectangle_area(b) - isect_area;
+
+    return isect_area / union_area;
+}
