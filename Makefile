@@ -34,7 +34,7 @@ UNIT_TESTS_BIN := $(patsubst %,build/%_test.exe,$(UNIT_TESTS))
 
 .PHONY: all compile run test clean
 
-all: compile test run
+all: compile test
 
 compile: $(LIB_OBJS)
 
@@ -56,5 +56,5 @@ build/%.o: %.c $(HDRS) | build
 build/%_test.exe: build/%_test.o $(LIB_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 
-build/project.exe: build/main.o
+build/project.exe: build/main.o $(LIB_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -lm
