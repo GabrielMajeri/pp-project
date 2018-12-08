@@ -7,6 +7,9 @@ CFLAGS += -std=c99
 # Enable additional warnings
 CFLAGS += -Wall -Wextra -Werror
 
+# Enable optimizations
+CFLAGS += -O
+
 # This Make function is used to run a test binary
 define run-test
 $(1)
