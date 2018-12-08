@@ -26,49 +26,15 @@ void image_free(image* imagine) {
     imagine->data = NULL;
 }
 
-image image_subregion(image src, rectangle r) {
-    u32 width, height;
-    rectangle_dims(r, &width, &height);
-
-    image result = image_alloc(width, height);
-
-    u32 offset_x = r.lt.x,
-        offset_y = r.lt.y;
-
-    const u32 src_width = src.width;
-
-    const pixel* src_data = src.data;
-    pixel* dest_data = result.data;
-
-    // copiez pixelii in destinatie
-    for (u32 line = 0; line < height; ++line) {
-        u32 src_line = offset_y + line;
-
-        for (u32 column = 0; column < width; ++column) {
-            u32 src_column = offset_x + column;
-
-            pixel p = src_data[src_line * src_width + src_column];
-            dest_data[line * width + column] = p;
-        }
-    }
-
-    return result;
-}
-
-image image_window(image src, point center, u32 window_width, u32 window_height) {
+image image_window(image src, rectangle window_rect) {
     int src_width = src.width, src_height = src.height;
 
-    // dreptunghiul care reprezinta fereastra
-    rectangle window_rect = {
-        .lt = {
-            .x = center.x - window_width / 2,
-            .y = center.y - window_height / 2,
-        },
-        .rb = {
-            .x = center.x + window_width / 2,
-            .y = center.y + window_height / 2,
-        },
-    };
+    u32 window_width, window_height;
+    rectangle_dims(window_rect, &window_width, &window_height);
+
+    // iau in considerare si linia / coloana din centru
+    ++window_width;
+    ++window_height;
 
     image result = image_alloc(window_width, window_height);
 
@@ -134,7 +100,7 @@ double image_correlation(image a, image b) {
 
     double sigma_a = image_std_dev(a);
     double sigma_b = image_std_dev(b);
-    double sigma_product = sigma_a * sigma_b;
+    double sigma_term = 1.0 / (sigma_a * sigma_b);
 
     double sum = 0.0;
 
@@ -142,8 +108,31 @@ double image_correlation(image a, image b) {
         double diff_a = a.data[k].red - sigma_a;
         double diff_b = b.data[k].red - sigma_b;
 
-        sum += (diff_a * diff_b) / sigma_product;
+        sum += diff_a * diff_b * sigma_term;
     }
 
     return sum / count;
+}
+
+void image_draw_rect(image img, rectangle r, pixel color) {
+    rectangle img_rect = rectangle_new(0, 0, img.width - 1, img.height - 1);
+    rectangle isect = rectangle_intersect(r, img_rect);
+
+    pixel* data = img.data;
+
+    for (int column = isect.lt.x; column <= isect.rb.x; ++column) {
+        // marginea de sus
+        data[isect.lt.y * img.width + column] = color;
+
+        // marginea de jos
+        data[isect.rb.y * img.width + column] = color;
+    }
+
+    for (int line = isect.lt.y; line <= isect.rb.y; ++line) {
+        // marginea din stanga
+        data[line * img.width + isect.lt.x] = color;
+
+        // marginea din dreapta
+        data[line * img.width + isect.rb.x] = color;
+    }
 }
