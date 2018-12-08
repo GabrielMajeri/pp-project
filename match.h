@@ -36,8 +36,7 @@ void match_free(matches* m);
 void match_insert(matches* m, detection d);
 
 /// Cauta un sablon intr-o imagine sursa, si returneaza toate detectiile
-void match_template(matches* m, image src,
-    const image* patterns, double threshold);
+void match_template(matches* m, image src, char digit, image pattern, double threshold);
 
 /// Sorteaza detectiile descrescator dupa corelatie
 void match_sort_det(matches* m);

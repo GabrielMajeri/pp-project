@@ -42,9 +42,8 @@ void match_insert(matches* m, detection d) {
     m->dets[m->len++] = d;
 }
 
-void match_template(matches* m, image src,
-    const image* patterns, double threshold) {
-    u32 pattern_width = patterns[0].width, pattern_height = patterns[0].height;
+void match_template(matches* m, image src, char digit, image pattern, double threshold) {
+    u32 pattern_width = pattern.width, pattern_height = pattern.height;
 
     for (u32 line = 0; line < src.height; ++line) {
         for (u32 column = 0; column < src.width; ++column) {
@@ -58,18 +57,16 @@ void match_template(matches* m, image src,
 
             image window = image_window(src, window_rect);
 
-            for (int i = 0; i < 10; ++i) {
-                double corr = image_correlation(patterns[i], window);
+            double corr = image_correlation(pattern, window);
 
-                if (corr > threshold) {
-                    detection det = {
-                        .window = window_rect,
-                        .corr = corr,
-                        .digit = i
-                    };
+            if (corr > threshold) {
+                detection det = {
+                    .window = window_rect,
+                    .corr = corr,
+                    .digit = digit
+                };
 
-                    match_insert(m, det);
-                }
+                match_insert(m, det);
             }
 
             image_free(&window);
