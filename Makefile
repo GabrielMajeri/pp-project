@@ -47,7 +47,7 @@ clean:
 build:
 	mkdir build
 
-build/%.o: %.c $(HDRS)
+build/%.o: %.c $(HDRS) | build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 build/%_test.exe: build/%_test.o $(LIB_OBJS)
