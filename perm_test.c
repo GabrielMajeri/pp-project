@@ -8,7 +8,7 @@ void assert_perm_eq(const u32* expected, const u32* perm, u32 len) {
     }
 }
 
-int main() {
+void test_example_permutation() {
     // exemplu din prezentarea proiectului
     const u32 rng[] = { 3, 1, 1, 2, 0 };
     const u32 expected[] = { 5, 0, 2, 4, 1, 3 };
@@ -31,4 +31,8 @@ int main() {
     perm_free(perm_id);
     perm_free(perm_rev);
     perm_free(perm);
+}
+
+int main() {
+    test_example_permutation();
 }
