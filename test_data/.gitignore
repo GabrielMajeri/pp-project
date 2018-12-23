@@ -4,6 +4,7 @@
 !secret_key.txt
 !peppers.bmp
 !enc_peppers_ok.bmp
+!imagine5x5
 
 # For pattern matching tests
 !cifra*.bmp
