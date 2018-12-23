@@ -34,7 +34,6 @@ image bmp_read(const char* src) {
     image imagine = image_alloc(width, height);
 
     const u32 padding = compute_padding(width);
-    pixel* current = imagine.data;
 
     for (u32 line = 0; line < height; ++line) {
         for (u32 column = 0; column < width; ++column) {
@@ -48,7 +47,7 @@ image bmp_read(const char* src) {
                 .red = bgr[2],
             };
 
-            *current++ = p;
+            imagine.data[width * (height - line - 1) + column] = p;
         }
 
         // sar peste padding
@@ -124,11 +123,10 @@ void bmp_write(image imagine, const char* dest) {
     bmp_write_header(f, width, height);
 
     u32 padding = compute_padding(width);
-    pixel* current = imagine.data;
 
     for (u32 line = 0; line < height; ++line) {
         for (u32 column = 0; column < width; ++column) {
-            pixel p = *current++;
+            pixel p = imagine.data[width * (height - line - 1) + column];
 
             u8 bgr[3] = { p.blue, p.green, p.red };
             fwrite(bgr, sizeof(u8), 3, f);
