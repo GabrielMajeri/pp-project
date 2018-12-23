@@ -1,6 +1,3 @@
-# Use gcc if no other compiler is set
-CC ?= gcc
-
 # Use the C99 standard
 CFLAGS += -std=c99
 
@@ -51,10 +48,10 @@ build:
 	mkdir build
 
 build/%.o: %.c $(HDRS) | build
-	$(CC) $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -c $< -o $@
 
 build/%_test.exe: build/%_test.o $(LIB_OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ -lm
+	gcc $(CFLAGS) $^ -o $@ -lm
 
 build/project.exe: build/main.o $(LIB_OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ -lm
+	gcc $(CFLAGS) $^ -o $@ -lm
