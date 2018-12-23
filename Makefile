@@ -36,7 +36,7 @@ UNIT_TESTS_BIN := $(patsubst %,build/%_test.exe,$(UNIT_TESTS))
 
 all: compile test
 
-compile: $(LIB_OBJS)
+compile: build/project.exe $(LIB_OBJS)
 
 test: $(UNIT_TESTS_BIN)
 	$(foreach test,$(UNIT_TESTS_BIN),$(call run-test,./$(test)))

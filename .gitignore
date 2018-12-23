@@ -3,3 +3,7 @@
 
 # Generated bitmaps
 /*.bmp
+
+# CodeBlocks metadata
+/*.depend
+/*.layout
