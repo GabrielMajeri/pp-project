@@ -52,8 +52,8 @@ void match_template(matches* m, image src, char digit, image pattern, double thr
             rectangle window_rect = rectangle_new(
                 center.x - pattern_width / 2,
                 center.y - pattern_height / 2,
-                center.x + pattern_width / 2,
-                center.y + pattern_height / 2);
+                center.x + pattern_width / 2 + 1,
+                center.y + pattern_height / 2 + 1);
 
             image window = image_window(src, window_rect);
 

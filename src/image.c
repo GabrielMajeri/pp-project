@@ -32,10 +32,6 @@ image image_window(image src, rectangle window_rect) {
     u32 window_width, window_height;
     rectangle_dims(window_rect, &window_width, &window_height);
 
-    // iau in considerare si linia / coloana din centru
-    ++window_width;
-    ++window_height;
-
     image result = image_alloc(window_width, window_height);
 
     const pixel* src_data = src.data;
@@ -98,6 +94,9 @@ double image_std_dev(image gray) {
 double image_correlation(image a, image b) {
     u32 count = a.width * a.height;
 
+    double media_a = image_mean(a);
+    double media_b = image_mean(b);
+
     double sigma_a = image_std_dev(a);
     double sigma_b = image_std_dev(b);
     double sigma_term = 1.0 / (sigma_a * sigma_b);
@@ -105,8 +104,8 @@ double image_correlation(image a, image b) {
     double sum = 0.0;
 
     for (u32 k = 0; k < count; ++k) {
-        double diff_a = a.data[k].red - sigma_a;
-        double diff_b = b.data[k].red - sigma_b;
+        double diff_a = a.data[k].red - media_a;
+        double diff_b = b.data[k].red - media_b;
 
         sum += diff_a * diff_b * sigma_term;
     }
