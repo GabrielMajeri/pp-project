@@ -14,16 +14,16 @@ $(1)
 endef
 
 
-SRCS := $(wildcard *.c)
+SRCS := $(wildcard src/*.c)
 
-LIB_SRCS := $(filter-out main.c %_test.c,$(SRCS))
-TEST_SRCS := $(filter %_test.c,$(SRCS))
+LIB_SRCS := $(filter-out src/main.c src/%_test.c,$(SRCS))
+TEST_SRCS := $(filter src/%_test.c,$(SRCS))
 
-HDRS := $(wildcard *.h)
+HDRS := $(wildcard src/*.h)
 
-LIB_OBJS := $(patsubst %.c,build/%.o,$(LIB_SRCS))
+LIB_OBJS := $(patsubst src/%.c,build/%.o,$(LIB_SRCS))
 
-UNIT_TESTS := $(patsubst %_test.c,%,$(TEST_SRCS))
+UNIT_TESTS := $(patsubst src/%_test.c,%,$(TEST_SRCS))
 UNIT_TESTS_BIN := $(patsubst %,build/%_test.exe,$(UNIT_TESTS))
 
 # Do not echo build commands
@@ -47,7 +47,7 @@ clean:
 build:
 	mkdir build
 
-build/%.o: %.c $(HDRS) | build
+build/%.o: src/%.c $(HDRS) | build
 	gcc $(CFLAGS) -c $< -o $@
 
 build/%_test.exe: build/%_test.o $(LIB_OBJS)
