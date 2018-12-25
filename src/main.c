@@ -97,7 +97,7 @@ void template_matching(void) {
 
     matches mat = match_alloc();
 
-    printf("Rulez algoritmul de dedectie pentru fiecare cifra...\n");
+    printf("Rulez algoritmul de detectie pentru fiecare cifra...\n");
 
     for (int digit = 0; digit < 10; ++digit) {
         printf("Caut cifra %d...\n", digit);
