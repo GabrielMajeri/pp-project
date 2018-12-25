@@ -36,111 +36,111 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="bmp.c">
+		<Unit filename="src/bmp.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="bmp.h">
+		<Unit filename="src/bmp.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="bmp_test.c">
+		<Unit filename="src/bmp_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="chi.c">
+		<Unit filename="src/chi.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="chi.h">
+		<Unit filename="src/chi.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="chi_test.c">
+		<Unit filename="src/chi_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="crypto.c">
+		<Unit filename="src/crypto.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="crypto.h">
+		<Unit filename="src/crypto.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="crypto_test.c">
+		<Unit filename="src/crypto_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="geom.c">
+		<Unit filename="src/geom.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="geom.h">
+		<Unit filename="src/geom.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="geom_test.c">
+		<Unit filename="src/geom_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="image.c">
+		<Unit filename="src/image.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="image.h">
+		<Unit filename="src/image.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="macro.h">
+		<Unit filename="src/macro.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="main.c">
+		<Unit filename="src/main.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="match.c">
+		<Unit filename="src/match.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="match.h">
+		<Unit filename="src/match.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="perm.c">
+		<Unit filename="src/perm.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="perm.h">
+		<Unit filename="src/perm.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="perm_test.c">
+		<Unit filename="src/perm_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="pixel.c">
+		<Unit filename="src/pixel.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="pixel.h">
+		<Unit filename="src/pixel.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="pixel_test.c">
+		<Unit filename="src/pixel_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="test_utils.c">
+		<Unit filename="src/test_utils.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="test_utils.h">
+		<Unit filename="src/test_utils.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="types.h">
+		<Unit filename="src/types.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="xorshift.c">
+		<Unit filename="src/xorshift.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
-		<Unit filename="xorshift.h">
+		<Unit filename="src/xorshift.h">
 			<Option target="run" />
 		</Unit>
-		<Unit filename="xorshift_test.c">
+		<Unit filename="src/xorshift_test.c">
 			<Option compilerVar="CC" />
 			<Option target="run" />
 		</Unit>
