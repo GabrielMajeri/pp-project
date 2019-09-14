@@ -8,11 +8,18 @@
 
 #define MAX_PATH_LEN 1024
 
+void read_path(char* path) {
+    if (scanf("%s", path) != 1) {
+        printf("Nu am putut citi calea\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
 void encryption(void) {
     char* path = (char*)malloc(MAX_PATH_LEN);
 
     printf("Calea imaginii care va fi criptata:\n");
-    scanf("%s", path);
+    read_path(path);
 
     image unencrypted = bmp_read(path);
 
@@ -20,7 +27,7 @@ void encryption(void) {
     chi2_print(chi2_image(path));
 
     printf("Calea catre fisierul cu cheia secreta:\n");
-    scanf("%s", path);
+    read_path(path);
 
     secret_key key = crypto_read_key(path);
 
@@ -28,7 +35,7 @@ void encryption(void) {
     image_free(&unencrypted);
 
     printf("Calea la care sa salvez imaginea criptata:\n");
-    scanf("%s", path);
+    read_path(path);
 
     bmp_write(encrypted, path);
     image_free(&encrypted);
@@ -45,12 +52,12 @@ void decryption(void) {
     char* path = (char*)malloc(MAX_PATH_LEN);
 
     printf("Calea imaginii de decriptat:\n");
-    scanf("%s", path);
+    read_path(path);
 
     image encrypted = bmp_read(path);
 
     printf("Calea fisierului care contine cheia secreta:\n");
-    scanf("%s", path);
+    read_path(path);
 
     secret_key key = crypto_read_key(path);
 
@@ -58,7 +65,7 @@ void decryption(void) {
     image_free(&encrypted);
 
     printf("Calea la care sa salvez imaginea decriptata:\n");
-    scanf("%s", path);
+    read_path(path);
 
     bmp_write(decrypted, path);
     image_free(&decrypted);
@@ -72,7 +79,7 @@ void template_matching(void) {
     char* path = (char*)malloc(MAX_PATH_LEN);
 
     printf("Calea directorului in care se afla sabloanele 'cifraX.bmp':\n");
-    scanf("%s", path);
+    read_path(path);
 
     image patterns[10];
 
@@ -89,7 +96,7 @@ void template_matching(void) {
     free(image_path);
 
     printf("Calea imaginii cu cifre:\n");
-    scanf("%s", path);
+    read_path(path);
 
     image digits = bmp_read(path);
 
@@ -146,7 +153,7 @@ void template_matching(void) {
     match_free(&mat);
 
     printf("Introduceti calea la care sa salvez imaginea cu detectiile:\n");
-    scanf("%s", path);
+    read_path(path);
 
     bmp_write(digits, path);
 

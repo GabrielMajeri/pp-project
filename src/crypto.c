@@ -16,7 +16,10 @@ secret_key crypto_read_key(const char* path) {
 
     secret_key key;
 
-    fscanf(f, "%u %u", &key.random_init, &key.starting_value);
+    if (fscanf(f, "%u %u", &key.random_init, &key.starting_value) != 2) {
+        printf("Nu pot citi cheia secretă din fișier\n");
+        exit(EXIT_FAILURE);
+    }
 
     fclose(f);
 
