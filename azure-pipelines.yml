@@ -9,5 +9,6 @@ pool:
 
 steps:
 - script: |
+    gcc --version
     make
   displayName: 'make'
