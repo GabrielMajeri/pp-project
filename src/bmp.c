@@ -23,11 +23,17 @@ image bmp_read(const char* src) {
 
     u32 width = 0;
     fseek(f, 18, SEEK_SET);
-    fread(&width, sizeof(width), 1, f);
+    if (fread(&width, sizeof(width), 1, f) != 1) {
+        printf("Nu am putut citi lățimea imaginii din fișier\n");
+        exit(EXIT_FAILURE);
+    }
 
     u32 height = 0;
     fseek(f, 22, SEEK_SET);
-    fread(&height, sizeof(height), 1, f);
+    if (fread(&height, sizeof(height), 1, f) != 1) {
+        printf("Nu am putut citi înălțimea imaginii din fișier\n");
+        exit(EXIT_FAILURE);
+    }
 
     fseek(f, 54, SEEK_SET);
 
@@ -39,7 +45,10 @@ image bmp_read(const char* src) {
         for (u32 column = 0; column < width; ++column) {
             u8 bgr[3];
 
-            fread(bgr, sizeof(u8), 3, f);
+            if (fread(bgr, sizeof(u8), 3, f) != 3) {
+                printf("Nu am putut citi pixelul din fișier\n");
+                exit(EXIT_FAILURE);
+            }
 
             pixel p = {
                 .blue = bgr[0],
