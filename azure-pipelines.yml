@@ -1,0 +1,13 @@
+# C with GCC
+# Builds the project with GCC using make.
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    make
+  displayName: 'make'
